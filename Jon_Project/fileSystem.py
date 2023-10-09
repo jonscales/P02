@@ -8,10 +8,10 @@ from prettytable import PrettyTable
 class FileSystem:
     def __init__(self,db_name=None):
         if not db_name:
-            self.db_name = "filesystem.sqlite"
+            self.db_name = "file-sys-primer-data.csv"
         else:
             self.db_name = db_name
-        self.crud = SQLiteCRUD(db_name)
+        self.crud = SQLiteCrud(db_name)
         self.cwd = "/home/user"
         self.cwdid = 6
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     SORRY FOR ALL CAPS DIDN'T WANT YOU TO MISS    
     """
      # Define table schema
-    table_name = "files_data"
+    table_name = "file-sys.primer-data.csv"
     columns = ["id INTEGER PRIMARY KEY", "pid INTEGER", "name TEXT", "created_date TEXT", "modified_date TEXT", "size REAL","type TEXT","owner TEXT","groop TEXT","permissions TEXT"]
     # Load table
     test_data = [
