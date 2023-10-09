@@ -8,10 +8,10 @@ from prettytable import PrettyTable
 class FileSystem:
     def __init__(self,db_name=None):
         if not db_name:
-            self.db_name = "file-sys-primer-data.csv"
+            self.db_path = "file_table.sqlite"
         else:
-            self.db_name = db_name
-        self.crud = SQLiteCrud(db_name)
+            self.db_path = db_name
+        self.crud = SQLiteCrud(self.db_path)
         self.cwd = "/home/user"
         self.cwdid = 1
 
@@ -20,7 +20,21 @@ class FileSystem:
         """
         pass
 
-
+    def load_csv(self):
+      """
+      1,0,rwxr-xr-x,bob,bob,directory,2018-06-23 19:15:35,2018-08-18 09:05:02,1024,linux
+      """
+      columns = ["id INTEGER PRIMARY KEY", "pid INTEGER","owner TEXT","groop TEXT", "type TEXT", "created_date TEXT", "modified_date TEXT","size REAL", "permissions TEXT","name TEXT" ]
+      self.crud.create_table("files_data", columns)
+      
+      with open("filesysdata.csv") as f:
+        data = f.readlines()
+        for row in data:
+            row = row.strip().split(",")
+        #   row.append(random.randint(500,1000000))
+            print(row)
+            self.crud.insert_data("files_data",row)    
+    
     def list(self,**kwargs):
         """ List the files and folders in current directory
         """
@@ -64,31 +78,31 @@ if __name__ == "__main__":
     WILL FIX AS WE ADD FUNCTIONALITY INTO THE FileSystem CLASS ABOVE
     SORRY FOR ALL CAPS DIDN'T WANT YOU TO MISS    
     """
-     # Define table schema
-    table_name = "file-sys.primer-data.csv"
-    columns = ["id INTEGER PRIMARY KEY", "pid INTEGER", "name TEXT", "created_date TEXT", "modified_date TEXT", "size REAL","type TEXT","owner TEXT","groop TEXT","permissions TEXT"]
-    # Load table
-    test_data = [
-        (1, None, 'Folder1', '2023-09-25 10:00:00', '2023-09-25 10:00:00', 0.0, 'folder', 'user1', 'group1', 'rwxr-xr-x'),
-        (2, 1, 'File1.txt', '2023-09-25 10:15:00', '2023-09-25 10:15:00', 1024.5, 'file', 'user1', 'group1', 'rw-r--r--'),
-        (3, 1, 'File2.txt', '2023-09-25 10:30:00', '2023-09-25 10:30:00', 512.0, 'file', 'user2', 'group2', 'rw-rw-r--'),
-        (4, None, 'Folder2', '2023-09-25 11:00:00', '2023-09-25 11:00:00', 0.0, 'folder', 'user2', 'group2', 'rwxr-xr--'),
-        (5, 4, 'File3.txt', '2023-09-25 11:15:00', '2023-09-25 11:15:00', 2048.75, 'file', 'user3', 'group3', 'rw-r--r--'),
-        (6, 4, 'File4.txt', '2023-09-25 11:30:00', '2023-09-25 11:30:00', 4096.0, 'file', 'user3', 'group3', 'rw-r--r--'),
-        (7, None, 'Folder3', '2023-09-25 12:00:00', '2023-09-25 12:00:00', 0.0, 'folder', 'user4', 'group4', 'rwxr-x---'),
-        (8, 7, 'File5.txt', '2023-09-25 12:15:00', '2023-09-25 12:15:00', 8192.0, 'file', 'user4', 'group4', 'rw-------'),
-        (9, None, 'Folder4', '2023-09-25 13:00:00', '2023-09-25 13:00:00', 0.0, 'folder', 'user5', 'group5', 'rwxr-xr-x'),
-        (10, 9, 'File6.txt', '2023-09-25 13:15:00', '2023-09-25 13:15:00', 3072.25, 'file', 'user5', 'group5', 'rwxr-xr--'),
-    ]
+    #  # Define table schema
+    # table_name = "filesysdata.csv"
+    # columns = ["type TEXT","name TEXT","owner TEXT","groop TEXT","id INTEGER PRIMARY KEY", "pid INTEGER",  "created_date TEXT", "modified_date TEXT", "size REAL","permissions TEXT"]
+    # # Load table
+    # test_data = [
+    #     (1, None, 'Folder1', '2023-09-25 10:00:00', '2023-09-25 10:00:00', 0.0, 'folder', 'user1', 'group1', 'rwxr-xr-x'),
+    #     (2, 1, 'File1.txt', '2023-09-25 10:15:00', '2023-09-25 10:15:00', 1024.5, 'file', 'user1', 'group1', 'rw-r--r--'),
+    #     (3, 1, 'File2.txt', '2023-09-25 10:30:00', '2023-09-25 10:30:00', 512.0, 'file', 'user2', 'group2', 'rw-rw-r--'),
+    #     (4, None, 'Folder2', '2023-09-25 11:00:00', '2023-09-25 11:00:00', 0.0, 'folder', 'user2', 'group2', 'rwxr-xr--'),
+    #     (5, 4, 'File3.txt', '2023-09-25 11:15:00', '2023-09-25 11:15:00', 2048.75, 'file', 'user3', 'group3', 'rw-r--r--'),
+    #     (6, 4, 'File4.txt', '2023-09-25 11:30:00', '2023-09-25 11:30:00', 4096.0, 'file', 'user3', 'group3', 'rw-r--r--'),
+    #     (7, None, 'Folder3', '2023-09-25 12:00:00', '2023-09-25 12:00:00', 0.0, 'folder', 'user4', 'group4', 'rwxr-x---'),
+    #     (8, 7, 'File5.txt', '2023-09-25 12:15:00', '2023-09-25 12:15:00', 8192.0, 'file', 'user4', 'group4', 'rw-------'),
+    #     (9, None, 'Folder4', '2023-09-25 13:00:00', '2023-09-25 13:00:00', 0.0, 'folder', 'user5', 'group5', 'rwxr-xr-x'),
+    #     (10, 9, 'File6.txt', '2023-09-25 13:15:00', '2023-09-25 13:15:00', 3072.25, 'file', 'user5', 'group5', 'rwxr-xr--'),
+    # ]
 
-    conn = SQLiteCrud("testfilesystem.sqlite")
+    conn = FileSystem()
 
-    conn.drop_table(table_name)
+    conn.load_csv()
 
-    conn.create_table(table_name, columns)
-    print(conn.describe_table(table_name))
+    # conn.create_table(table_name, columns)
+    # print(conn.describe_table(table_name))
 
-    for row in test_data:
-        conn.insert_data(table_name, row)
+    # for row in test_data:
+    #     conn.insert_data(table_name, row)
 
-    print(conn.formatted_print(table_name))
+    # print(conn.formatted_print(table_name))
