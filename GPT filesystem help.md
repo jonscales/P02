@@ -18,15 +18,15 @@ class EventContainer:
  Create an instance of the EventContainer
 event_container = EventContainer()
 
-&#35; Add events to the container
+\# Add events to the container
 event_container.add_event("Event 1")
 event_container.add_event("Event 2")
 event_container.add_event("Event 3")
 
-&#35; Access events by enumeration
-print(event_container.events[0])  &#35; Output: ['Event 1']
-print(event_container.events[1])  &#35; Output: ['Event 2']
-print(event_container.events[2])  &#35; Output: ['Event 3']
+\# Access events by enumeration
+print(event_container.events[0])  \# Output: ['Event 1']
+print(event_container.events[1])  \# Output: ['Event 2']
+print(event_container.events[2])  \# Output: ['Event 3']
 In this example, the EventContainer class maintains a counter to enumerate the events, and the add_event method adds events to the dictionary with the enumeration as the key.
 
 You can further enhance the EventContainer class by adding methods for retrieving and managing events as needed for your specific use case.
@@ -55,16 +55,16 @@ class Filesys:
         self.event_container = EventContainer()
 
     def list(self):
-        &#35; Call the add_event function from the EventContainer class
+        \# Call the add_event function from the EventContainer class
         self.event_container.add_event("Event from Filesys")
 
-&#35; Create an instance of the Filesys class
+\# Create an instance of the Filesys class
 filesystem = Filesys()
 
-&#35; Call the list method, which in turn calls add_event
+\# Call the list method, which in turn calls add_event
 filesystem.list()
 
-&#35; Check the events in the EventContainer
+\# Check the events in the EventContainer
 print(filesystem.event_container.events)
 In this example, we create an instance of the EventContainer class within the Filesys class, and then in the list method of the Filesys class, we call the add_event function of the EventContainer class by accessing it through self.event_container.
 
@@ -80,31 +80,31 @@ python
 Copy code
 class Filesys:
     def __init__(self):
-        self.history = {}  &#35; Initialize the history dictionary
+        self.history = {}  \# Initialize the history dictionary
 
     def add_event(self, event_name):
-        &#35; Append the event to the history dictionary
+        \# Append the event to the history dictionary
         if 'events' not in self.history:
             self.history['events'] = []
         self.history['events'].append(event_name)
 
     def list(self):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event("Event from list()")
 
     def create_file(self, file_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"Event: Created file '{file_name}'")
 
-&#35; Create an instance of the Filesys class
+\# Create an instance of the Filesys class
 filesystem = Filesys()
 
-&#35; Run some functions and record events
+\# Run some functions and record events
 filesystem.list()
 filesystem.create_file("document.txt")
 filesystem.list()
 
-&#35; Access the history dictionary to see recorded events
+\# Access the history dictionary to see recorded events
 print(filesystem.history)
 In this example, we initialize a history dictionary within the Filesys class and use the add_event method to append events to this dictionary. You can call add_event from various methods within your Filesys class to maintain a history of events or function calls specific to that instance.
 
@@ -120,36 +120,36 @@ python
 Copy code
 class Filesys:
     def __init__(self):
-        self.history = {}  &#35; Initialize the history dictionary
-        self.call_counter = 1  &#35; Initialize the call counter
+        self.history = {}  \# Initialize the history dictionary
+        self.call_counter = 1  \# Initialize the call counter
 
     def add_event(self, event_name):
-        &#35; Append the event to the history dictionary with the call counter as the key
+        \# Append the event to the history dictionary with the call counter as the key
         self.history[self.call_counter] = event_name
-        self.call_counter += 1  &#35; Increment the call counter
+        self.call_counter += 1  \# Increment the call counter
 
     def list(self):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event("list()")
 
     def make_directory(self, directory_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"make directory: {directory_name}")
 
     def change_directory(self, directory_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"change directory: {directory_name}")
 
-&#35; Create an instance of the Filesys class
+\# Create an instance of the Filesys class
 filesystem = Filesys()
 
-&#35; Run some functions and record events
+\# Run some functions and record events
 filesystem.list()
 filesystem.make_directory("documents")
 filesystem.change_directory("documents")
 filesystem.list()
 
-&#35; Access the history dictionary to see recorded events in the order they were called
+\# Access the history dictionary to see recorded events in the order they were called
 print(filesystem.history)
 In this updated example, we maintain a call_counter that increments with each function call. The add_event method appends events to the history dictionary using the call counter as the key, ensuring that events are recorded in the same sequential order in which they were called.
 
@@ -170,47 +170,47 @@ python
 Copy code
 class Filesys:
     def __init__(self):
-        self.history = {}  &#35; Initialize the history dictionary
-        self.call_counter = 1  &#35; Initialize the call counter
+        self.history = {}  \# Initialize the history dictionary
+        self.call_counter = 1  \# Initialize the call counter
 
     def add_event(self, event_name):
-        &#35; Append the event to the history dictionary with the call counter as the key
+        \# Append the event to the history dictionary with the call counter as the key
         self.history[self.call_counter] = event_name
-        self.call_counter += 1  &#35; Increment the call counter
+        self.call_counter += 1  \# Increment the call counter
 
     def list(self):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event("list")
 
     def make_directory(self, directory_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"make directory: {directory_name}")
 
     def change_directory(self, directory_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"change directory: {directory_name}")
 
     def copy_file(self, file_name, destination):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"copy file: {file_name} to {destination}")
 
     def move_file(self, file_name, destination):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"move file: {file_name} to {destination}")
 
     def remove_file(self, file_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         self.add_event(f"remove file: {file_name}")
 
     def print_history(self):
-        &#35; Print the history in the desired format
+        \# Print the history in the desired format
         for key, value in self.history.items():
             print(f"{key:2}  {value}")
 
-&#35; Create an instance of the Filesys class
+\# Create an instance of the Filesys class
 filesystem = Filesys()
 
-&#35; Run a sequence of commands (function calls)
+\# Run a sequence of commands (function calls)
 filesystem.list()
 filesystem.change_directory("docs")
 filesystem.make_directory("files")
@@ -225,7 +225,7 @@ filesystem.list()
 filesystem.remove_file("image.png")
 filesystem.list()
 
-&#35; Print the history
+\# Print the history
 filesystem.print_history()
 This code includes the print_history method to display the history in the desired format at the end of the command sequence. The print_history method iterates through the history dictionary and prints the call counter and corresponding event.
 
@@ -265,7 +265,7 @@ To print each keyword-value pair on individual lines without blank lines between
 python
 Copy code
 def print_history(self):
-    &#35; Print the history in the desired format without blank lines
+    \# Print the history in the desired format without blank lines
     for key, value in self.history.items():
         print(f"{key:2}  {value}", end='')
 With this change, each keyword-value pair will be printed on the same line without blank lines between them, just as you want.
@@ -282,63 +282,63 @@ python
 Copy code
 class Filesys:
     def __init__(self):
-        self.history = {}  &#35; Initialize the history dictionary
-        self.call_counter = 1  &#35; Initialize the call counter
+        self.history = {}  \# Initialize the history dictionary
+        self.call_counter = 1  \# Initialize the call counter
 
     def add_event(self, event_name):
-        &#35; Append the event to the history dictionary with the call counter as the key
+        \# Append the event to the history dictionary with the call counter as the key
         self.history[self.call_counter] = event_name
-        self.call_counter += 1  &#35; Increment the call counter
+        self.call_counter += 1  \# Increment the call counter
 
     def list(self):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         cmdname = "list"
         cmdparams = []
         self.add_event(self.format_event(cmdname, cmdparams))
 
     def make_directory(self, directory_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         cmdname = "make directory"
         cmdparams = [directory_name]
         self.add_event(self.format_event(cmdname, cmdparams))
 
     def change_directory(self, directory_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         cmdname = "change directory"
         cmdparams = [directory_name]
         self.add_event(self.format_event(cmdname, cmdparams))
 
     def copy_file(self, file_name, destination):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         cmdname = "copy file"
         cmdparams = [file_name, destination]
         self.add_event(self.format_event(cmdname, cmdparams))
 
     def move_file(self, file_name, destination):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         cmdname = "move file"
         cmdparams = [file_name, destination]
         self.add_event(self.format_event(cmdname, cmdparams))
 
     def remove_file(self, file_name):
-        &#35; Call the add_event method to record the event
+        \# Call the add_event method to record the event
         cmdname = "remove file"
         cmdparams = [file_name]
         self.add_event(self.format_event(cmdname, cmdparams))
 
     def format_event(self, cmdname, cmdparams):
-        &#35; Format the event with command name and associated parameters
+        \# Format the event with command name and associated parameters
         return f"{cmdname}: {' '.join(cmdparams)}"
 
     def print_history(self):
-        &#35; Print the history in the desired format without blank lines
+        \# Print the history in the desired format without blank lines
         for key, value in self.history.items():
             print(f"{key:2}  {value}")
 
-&#35; Create an instance of the Filesys class
+\# Create an instance of the Filesys class
 filesystem = Filesys()
 
-&#35; Run a sequence of commands (function calls)
+\# Run a sequence of commands (function calls)
 filesystem.list()
 filesystem.change_directory("docs")
 filesystem.make_directory("files")
@@ -353,6 +353,6 @@ filesystem.list()
 filesystem.remove_file("image.png")
 filesystem.list()
 
-&#35; Print the history
+\# Print the history
 filesystem.print_history()
 With the format_event method, the command name and parameters are combined into a formatted event string, which is then passed to the add_event method. This ensures that the history records each command and its associated parameters.
