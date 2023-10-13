@@ -265,10 +265,10 @@ To print each keyword-value pair on individual lines without blank lines between
 
 python
 Copy code
-def print_history(self):
-    # Print the history in the desired format without blank lines
-    for key, value in self.history.items():
-        print(f"{key:2}  {value}", end='')
+    def print_history(self):
+        # Print the history in the desired format without blank lines
+        for key, value in self.history.items():
+            print(f"{key:2}  {value}", end='')
 With this change, each keyword-value pair will be printed on the same line without blank lines between them, just as you want.
 
 
