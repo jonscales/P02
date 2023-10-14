@@ -8,7 +8,7 @@ from prettytable import PrettyTable
 class FileSystem:
     def __init__(self,db_name=None):
         if not db_name:
-            self.db_path = "file_table.sqlite"
+            self.db_path = "filetable.sqlite"
         else:
             self.db_path = db_name
         self.crud = SQLiteCrud(self.db_path)
@@ -24,8 +24,8 @@ class FileSystem:
       """
       1,0,rwxr-xr-x,bob,bob,directory,2018-06-23 19:15:35,2018-08-18 09:05:02,1024,linux
       """
-      columns = ["id INTEGER PRIMARY KEY", "pid INTEGER","Owner TEXT","Owners Group TEXT", "Type TEXT", "created_date TEXT",
-                  "modified_date TEXT","size REAL", "permissions TEXT","filename TEXT" ]
+      columns = ["id INTEGER PRIMARY KEY", "pid INTEGER","Permissions TEXT","Owner TEXT","_Group TEXT", "Type TEXT", "Created_date TEXT",
+                  "Modified_date TEXT","size REAL","Filename TEXT" ]
       self.crud.create_table("filetable", columns)
       
       with open("filesysdata.csv") as f:
