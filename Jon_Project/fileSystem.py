@@ -24,8 +24,9 @@ class FileSystem:
       """
       1,0,rwxr-xr-x,bob,bob,directory,2018-06-23 19:15:35,2018-08-18 09:05:02,1024,linux
       """
-      columns = ["id INTEGER PRIMARY KEY", "pid INTEGER","owner TEXT","groop TEXT", "type TEXT", "created_date TEXT", "modified_date TEXT","size REAL", "permissions TEXT","name TEXT" ]
-      self.crud.create_table("files_data", columns)
+      columns = ["id INTEGER PRIMARY KEY", "pid INTEGER","Owner TEXT","Owners Group TEXT", "Type TEXT", "created_date TEXT",
+                  "modified_date TEXT","size REAL", "permissions TEXT","filename TEXT" ]
+      self.crud.create_table("filetable", columns)
       
       with open("filesysdata.csv") as f:
         data = f.readlines()
@@ -33,7 +34,7 @@ class FileSystem:
             row = row.strip().split(",")
         #   row.append(random.randint(500,1000000))
             print(row)
-            self.crud.insert_data("files_data",row)    
+            self.crud.insert_data("filetable",row)    
     
     def list(self,**kwargs):
         """ List the files and folders in current directory
